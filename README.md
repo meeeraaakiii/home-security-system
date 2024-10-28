@@ -16,16 +16,6 @@ sudo apt install libasio-dev
 sudo apt install inotify-tools
 ```
 
-## Install Crow
-```bash
-cd ~/ProgramFiles
-git clone git@github.com:CrowCpp/Crow.git
-mkdir build
-cd build
-cmake .. -DCROW_BUILD_EXAMPLES=OFF -DCROW_BUILD_TESTS=OFF
-sudo make install
-```
-
 ## Run
 ```bash
 cmake -B build -S . && cmake --build build && ./build/ShowStream
