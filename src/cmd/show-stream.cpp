@@ -7,6 +7,8 @@
 
 int main() {
     load_config_file("cfg/config.json");
+
+    start_session_cleanup_ticker(config.at("session_cleanup_interval"));
     crow::App<SessionMiddleware> app;
     // app.loglevel(crow::LogLevel::Debug);
     crow::mustache::set_global_base("src/assets/html");

@@ -10,8 +10,64 @@ std::shared_mutex session_mutex;  // for thread-safe access to sessions
 // Function to add a session
 void add_session(const std::string& session_id, const std::string& username, int cookie_max_age) {
     std::unique_lock lock(session_mutex);  // exclusive lock for writing
-    sessions[session_id] = {username, std::chrono::system_clock::now() + std::chrono::seconds(cookie_max_age/2)};
-    // sessions[session_id] = {username, std::chrono::system_clock::now() + std::chrono::hours(cookie_max_age)};
+    // sessions[session_id] = {username, std::chrono::system_clock::now() + std::chrono::seconds(cookie_max_age/2)};
+    sessions[session_id] = {username, std::chrono::system_clock::now() + std::chrono::hours(cookie_max_age)};
+}
+
+void delete_expired_sessions() {
+    print_sessions();
+    std::unique_lock lock(session_mutex);  // Lock for safe iteration and modification
+    auto now = std::chrono::system_clock::now();
+
+    for (auto it = sessions.begin(); it != sessions.end(); ) {
+
+        if (it->second.expires <= now) {  // Check if session has expired
+            it = sessions.erase(it);     // Erase returns the next iterator after deletion
+        } else {
+            ++it;  // Move to the next session if not expired
+        }
+    }
+}
+
+void start_session_cleanup_ticker(int session_cleanup_interval) {
+    std::thread([session_cleanup_interval]() {
+        while (true) {
+            delete_expired_sessions();
+            std::this_thread::sleep_for(std::chrono::seconds(session_cleanup_interval));
+        }
+    }).detach();  // Detach the thread to run independently
+}
+
+void print_sessions() {
+    std::unique_lock lock(session_mutex);  // Lock to safely access sessions
+
+    std::ostringstream oss;
+    oss << "List of sessions: [";
+
+    size_t count = 0;
+    size_t total_sessions = sessions.size();  // Get the total number of sessions
+
+    for (const auto& session : sessions) {
+        const auto& [session_id, session_info] = session;
+        const auto& [username, expiration_time] = session_info;
+
+        // Convert expiration_time to time_t for printing
+        std::time_t expiration_time_t = std::chrono::system_clock::to_time_t(expiration_time);
+        
+        // Append session details to the output string
+        oss << "[Session ID: " << session_id 
+            << ", Username: " << username 
+            << ", Expiration: " << std::put_time(std::localtime(&expiration_time_t), "%Y-%m-%d %H:%M:%S") 
+            << "]";
+
+        // Add a space separator if this is not the last session
+        if (++count < total_sessions) {
+            oss << " ";
+        }
+    }
+
+    // Print the accumulated sessions in a single line
+    std::cout << oss.str() << "]" << std::endl;
 }
 
 // Function to check if a session is valid
@@ -63,8 +119,8 @@ std::string get_expiration_time(int cookie_max_age) {
     auto now = std::chrono::system_clock::now();
 
     // Add 1 hour to the current time
-    auto expiration_time = now + std::chrono::seconds(cookie_max_age);
-    // auto expiration_time = now + std::chrono::hours(cookie_max_age);
+    // auto expiration_time = now + std::chrono::seconds(cookie_max_age);
+    auto expiration_time = now + std::chrono::hours(cookie_max_age);
 
     // Convert to time_t for formatting
     std::time_t expiration_time_t = std::chrono::system_clock::to_time_t(expiration_time);

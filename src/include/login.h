@@ -16,6 +16,12 @@ extern std::shared_mutex session_mutex;  // for thread-safe access to sessions
 
 void add_session(const std::string& session_id, const std::string& username, int cookie_max_age);
 
+void delete_expired_sessions();
+
+void print_sessions();
+
+void start_session_cleanup_ticker(int session_cleanup_interval);
+
 bool is_session_valid(const std::string& session_id);
 
 std::string get_cookie_value(const std::string& cookies, const std::string& cookie_name);
