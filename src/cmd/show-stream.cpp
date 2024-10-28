@@ -3,13 +3,18 @@
 #include "config.h"
 #include "files.h"
 #include "login.h"
+#include "rate-limiter.h"
 #include "stream.h"
 
 int main() {
     load_config_file("cfg/config.json");
 
     start_session_cleanup_ticker(config.at("session_cleanup_interval"));
-    crow::App<SessionMiddleware> app;
+
+    crow::App<RateLimitMiddleware, SessionMiddleware> app;
+    // Initialize rate limiting parameters after creating the app
+    app.get_middleware<RateLimitMiddleware>().init(1000, 60);  // 1000 requests per minute
+
     // app.loglevel(crow::LogLevel::Debug);
     crow::mustache::set_global_base("src/assets/html");
 
