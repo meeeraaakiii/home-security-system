@@ -17,6 +17,16 @@ sudo apt install libasio-dev
 sudo apt install inotify-tools
 ```
 
+## Install Crow
+```bash
+cd ~/ProgramFiles
+git clone git@github.com:CrowCpp/Crow.git
+mkdir build
+cd build
+cmake .. -DCROW_BUILD_EXAMPLES=OFF -DCROW_BUILD_TESTS=OFF
+sudo make install
+```
+
 ## Useful commands
 ```bash
 # List available PulseAudio devices:
@@ -84,20 +94,7 @@ ffmpeg \
 - | ssh vagrant@127.0.0.1 -p 2222 'cat > /home/vagrant/recordings/stream.m3u8'
 ```
 
-## Install Crow
-```bash
-cd ~/ProgramFiles
-git clone git@github.com:CrowCpp/Crow.git
-mkdir build
-cd build
-cmake .. -DCROW_BUILD_EXAMPLES=OFF -DCROW_BUILD_TESTS=OFF
-sudo make install
-```
-
 ## Run
 ```bash
-g++ -o ./tmp/simple_app ./src/cmd/simple_app.cpp $(pkg-config --cflags --libs libavformat libavcodec libavdevice libavutil) && ./tmp/smiple_app
-g++ -o ./tmp/simple_app ./src/cmd/simple_app.cpp && ./tmp/smiple_app
-g++ -o ./tmp/show_stream ./src/cmd/main.cpp
-g++ -o ./tmp/show_stream ./src/cmd/main.cpp && ./tmp/show_stream
+cmake -B build -S . && cmake --build build && ./build/ShowStream
 ```
