@@ -1,4 +1,5 @@
 #include "login.h"
+#include "config.h"
 
 #include "crow.h"
 
@@ -45,28 +46,26 @@ void login_page_handler(const crow::request& req, crow::response& res) {
     auto params = parse_urlencoded_body(req.body);
     auto submitted_username = params.find("username") != params.end() ? params["username"] : "";
     auto submitted_password = params.find("password") != params.end() ? params["password"] : "";
-    if (!submitted_username.empty() && !submitted_password.empty()) {
-        std::cout << "Username: " << submitted_username << std::endl;
-        std::cout << "Password: " << submitted_password << std::endl;
-    } else {
-        std::cout << "Username or password is missing." << std::endl;
-    }
     std::string session_id = generate_pseudo_uuid();
     std::cout << "Generated Pseudo-UUID: " << session_id << std::endl;
 
-    if (submitted_username == username && submitted_password == password) {
-        std::cout << "Username and password correct!" << std::endl;
-        // res.add_header("Set-Cookie", "session_id="+session_id+"; HttpOnly; Path=/");
-        res.add_header("Set-Cookie", "session_id=valid_session; HttpOnly; Path=/");
-        // set status code to 303 to tells the client to redirect with a GET request.
-        res.code = 303;
-        // manually set location header
-        res.set_header("Location", "/");
-        res.end();
-    } else {
-        crow::mustache::context ctx;
-        ctx["Error"] = "Invalid username or password";
-        ctx["Username"] = submitted_username;
-        serve_login_page(req, res, ctx);
+    for (const auto& user : config.at("users")) {
+        std::string username = user.at("username");
+        std::string password = user.at("password");
+        if (submitted_username == username && submitted_password == password) {
+            std::cout << "Username and password correct!" << std::endl;
+            // res.add_header("Set-Cookie", "session_id="+session_id+"; HttpOnly; Path=/");
+            res.add_header("Set-Cookie", "session_id=valid_session; HttpOnly; Path=/");
+            // set status code to 303 to tells the client to redirect with a GET request.
+            res.code = 303;
+            // manually set location header
+            res.set_header("Location", "/");
+            res.end();
+            return;
+        }
     }
+    crow::mustache::context ctx;
+    ctx["Error"] = "Invalid username or password";
+    ctx["Username"] = submitted_username;
+    serve_login_page(req, res, ctx);
 }

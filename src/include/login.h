@@ -1,8 +1,5 @@
 #include "crow.h"
 
-const std::string username = "admin";
-const std::string password = "password";
-
 void serve_login_page(const crow::request& req, crow::response& res, crow::mustache::context ctx);
 
 void login_page_handler(const crow::request& req, crow::response& res);
