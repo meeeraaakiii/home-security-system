@@ -15,7 +15,6 @@ sudo apt install libasio-dev
 
 # inotifywait command
 sudo apt install inotify-tools
-
 ```
 
 ## Useful commands
@@ -67,7 +66,6 @@ ffmpeg \
 -hls_allow_cache 0 \
 -hls_segment_filename "./tmp/segment_%04d.ts" \
 './tmp/stream.m3u8'
-
 
 # hls ssh, only stream.m3u8 will be on the server. Move segments using ./src/scripts/sent_ts_files.sh
 ffmpeg \
