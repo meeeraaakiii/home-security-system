@@ -1,4 +1,5 @@
 {
+    "cookie_max_age": 2,
     "users": [
         {
             "username": "your_username_1",

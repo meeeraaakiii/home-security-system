@@ -18,13 +18,6 @@ void load_config_file(const std::string& path) {
 
     try {
         config_file >> config;
-
-        // Access the users array
-        for (const auto& user : config.at("users")) {
-            std::string username = user.at("username");
-            std::string password = user.at("password");
-            std::cout << "Username: " << username << ", Password: " << password << std::endl;
-        }
     } catch (const nlohmann::json::exception& e) {
         std::cerr << "JSON parsing error: " << e.what() << std::endl;
         exit(1);
