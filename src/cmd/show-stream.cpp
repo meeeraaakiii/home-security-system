@@ -1,11 +1,12 @@
 #include "crow.h"
-// #include "crow/mustache.h"
 
+#include "config.h"
 #include "files.h"
 #include "login.h"
 #include "stream.h"
 
 int main() {
+    load_config_file("cfg/config.json");
     crow::App<SessionMiddleware> app;
     // app.loglevel(crow::LogLevel::Debug);
     crow::mustache::set_global_base("src/assets/html");
