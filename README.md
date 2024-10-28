@@ -98,3 +98,10 @@ ffmpeg \
 ```bash
 cmake -B build -S . && cmake --build build && ./build/ShowStream
 ```
+
+
+## TODO
+- JSON configuration file (put users there)
+- Real sessions (use map to store sessions)
+- Rate limiting
+- Set up scripts to generate and move stream files
