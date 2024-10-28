@@ -1,5 +1,7 @@
-# Record webcam
-Record webcam footage with sound
+# Home Security System
+Record webcam footage with sound using ffmpeg.
+Upload files to a remote server.
+App shows stream of webcam footage from that remote server (with login page).
 
 ## Installation
 ```bash
