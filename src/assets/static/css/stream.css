@@ -1,0 +1,29 @@
+/* Make body and html take up the full viewport height and width */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden; /* Prevent scrolling */
+}
+/* Full-screen overlay */
+#overlay {
+    width: 100vw;
+    height: 100vh;
+    background: black;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: clamp(48px, 5vh, 96px);
+    cursor: pointer;
+}
+/* Full-screen video styling */
+#video {
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover; /* Ensures video covers the entire area */
+    display: none; /* Initially hidden until play */
+}

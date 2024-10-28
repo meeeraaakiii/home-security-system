@@ -1,0 +1,35 @@
+# If this project is part of a larger monorepo - better make
+# root .gitignore file instead with all those rules
+
+# binary
+build/*
+
+# configuration file
+cfg/*
+# but keep example congiguration file
+!cfg/*example*
+
+
+# environment files
+env/*
+# but keep .example environment files
+!env/*.example*.env.*
+
+# directory for input files and such
+tmp/*
+# directory for log files
+log/*
+
+# vi files
+*~
+*.bak
+
+.vscode/browse*
+
+# .gitkeep to add empty directories
+!.gitkeep
+# readme files
+!README.md
+
+output.mp4
+record

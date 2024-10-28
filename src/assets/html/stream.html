@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Camera</title>
+        <link rel="stylesheet" href="/static/css/general.css">
+        <link rel="stylesheet" href="/static/css/stream.css">
+    </head>
+    <body>
+        <div id="overlay" onclick="playVideo()">Click to play</div>
+        <video id="video" controls></video>
+    </body>
+
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@1"></script>
+    <script>
+        function playVideo() {
+            var video = document.getElementById('video');
+            video.muted = false; // Enable sound
+            video.play();
+            document.getElementById('overlay').style.display = 'none'; // Hide overlay
+            video.style.display = 'block'; // Show video
+        }
+
+        if (Hls.isSupported()) {
+            var video = document.getElementById('video');
+            var hls = new Hls();
+            hls.loadSource('/stream.m3u8');
+            hls.attachMedia(video);
+        } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+            video.src = '/stream.m3u8';
+        }
+    </script>
+</html>

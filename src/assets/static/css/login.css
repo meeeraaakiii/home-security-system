@@ -1,0 +1,138 @@
+/* Body Styling - fully responsive with ultra-modern aesthetics */
+body {
+    background: linear-gradient(135deg, #dbdbdb 0%, #d4dae5 100%);
+    color: #2f3e46;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    perspective: 1000px;
+    backdrop-filter: blur(10px);
+}
+
+/* 3D Form design */
+form {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    max-width: 400px;
+    width: 100%;
+    transform: rotateY(10deg);
+    transition: transform 1s ease-in-out;
+}
+
+form:hover {
+    transform: rotateY(0deg);
+}
+
+/* Labels will be animated and float above fields in focus */
+label {
+    color: #2f3e46;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+input[type="text"], input[type="password"] {
+    width: 95%; /* To keep fields from stretching too far left */
+    padding: 15px;
+    margin-bottom: 25px;
+    border: none;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.2);
+    color: #2f3e46;
+    font-size: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    outline: none;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+/* Slightly bigger on hover */
+input[type="text"]:hover, input[type="password"]:hover {
+    background: rgba(255, 255, 255, 0.4);
+    transform: scale(1.03);
+}
+
+/* Even bigger on focus */
+input[type="text"]:focus, input[type="password"]:focus {
+    background: rgba(255, 255, 255, 0.6);
+    transform: scale(1.05);
+}
+
+/* Muted Green Button Style with Underlining */
+/* Cool Blues Button Style with Underlining */
+button {
+    background: #3a86ff;
+    color: #fff;
+    padding: 15px;
+    border: 2px solid #3a86ff;
+    border-radius: 30px;
+    font-size: 1.2rem;
+    width: 100%;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    position: relative;
+    display: inline-block;
+}
+
+/* Hover State */
+button:hover {
+    background: #4361ee;
+    color: #f5f5f5;
+    transform: scale(1.05);
+    border-color: #4361ee;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Active State */
+button:active {
+    background: #4895ef;
+    color: #f0f8ff;
+    transform: scale(0.95);
+    border-color: #4895ef;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Hover Effect Underline */
+button::after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: #4361ee;
+    transition: width 0.4s ease, left 0.4s ease;
+}
+
+button:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+
+/* Error message, muted alert */
+.error {
+    color: red;
+    background: rgba(179, 0, 0, 0.1);
+    padding: 15px;
+    border: 1px solid #b30000;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    animation: shake 0.5s;
+}
+
+/* Animation for error shaking */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+}

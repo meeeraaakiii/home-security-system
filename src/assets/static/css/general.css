@@ -1,0 +1,54 @@
+/* Base Button Styles */
+a.btn, button.btn {
+    padding: 10px 20px;
+    text-decoration: none;
+    background: #3a86ff;
+    color: #fff;
+    border: 2px solid #3a86ff;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: background 0.4s ease, color 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+    position: relative;
+    display: inline-block;
+}
+
+/* Hover State */
+a.btn:hover, button.btn:hover {
+    background: #4361ee;
+    color: #f5f5f5;
+    transform: translateY(-3px);
+    border-color: #4361ee;
+    cursor: pointer;
+}
+
+/* Active State */
+a.btn:active, button.btn:active {
+    background: #4895ef;
+    color: #f0f8ff;
+    transform: translateY(0);
+    border-color: #4895ef;
+    transition: transform 0.1s, background 0.2s ease;
+}
+
+/* Hover Effect Underline */
+a.btn::after, button.btn::after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: #4361ee;
+    transition: width 0.4s ease, left 0.4s ease;
+}
+
+a.btn:hover::after, button.btn:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+/* Container Padding */
+.container {
+    padding: 20px;
+}
