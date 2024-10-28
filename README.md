@@ -26,6 +26,5 @@ cmake -B build -S . && cmake --build build && ./build/ShowStream
 - ~~Real sessions (use map to store sessions)~~
 - ~~Rate limiting~~
 - ~~Move crow headers into the project~~
-- Serve css and html files from a map?
 - Set up scripts to generate and move stream files
 - Way to quickly set up show-stream http app on the remote server.
