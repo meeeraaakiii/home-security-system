@@ -1,3 +1,6 @@
+#ifndef LOGIN_H
+#define LOGIN_H
+
 #include "crow.h"
 
 #include <chrono>
@@ -12,6 +15,7 @@ struct Session {
 
 // Global variables for session management
 extern std::unordered_map<std::string, Session> sessions;
+
 extern std::shared_mutex session_mutex;  // for thread-safe access to sessions
 
 void add_session(const std::string& session_id, const std::string& username, int cookie_max_age);
@@ -51,3 +55,5 @@ struct SessionMiddleware {
 
     void after_handle(crow::request&, crow::response&, context&) {}
 };
+
+#endif // LOGIN_H
