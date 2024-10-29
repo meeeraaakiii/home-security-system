@@ -61,3 +61,4 @@ cd ~/show-stream
     - ~~Detect microphone~~
 - ~~Control port with a config file~~
 - ~~Control recordings dir with a config file~~
+- Investigate why chrome browser can't play HLS playlist.
