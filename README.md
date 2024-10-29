@@ -18,7 +18,12 @@ sudo apt install inotify-tools
 
 ## Run
 ```bash
+# run show-stream http app
 cmake -B build -S . && cmake --build build && ./build/ShowStream
+# remove ~/recordings dir on the server
+./src/scripts/clean_up.sh server
+# clean ./tmp/ dir of segment* and stream.m3u8 files
+./src/scripts/clean_up.sh
 ```
 
 ## TODO
