@@ -56,6 +56,6 @@ cd ~/show-stream
 - ~~Move crow headers into the project~~
 - ~~Set up scripts to generate and move stream files~~
 - ~~Way to quickly set up show-stream http app on the remote server~~
-- Make sure that ffmpeg command works with any hardware
+- ~~Make sure that ffmpeg command works with any hardware~~
     - ~~Detect video devices~~
     - ~~Detect microphone~~
