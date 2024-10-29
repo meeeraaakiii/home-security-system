@@ -22,15 +22,15 @@ sudo apt install inotify-tools
 cmake -B build -S . && cmake --build build && ./build/ShowStream
 
 # remove ~/recordings dir on the server
-./src/scripts/clean_up.sh server
+./scripts/clean_up.sh server
 # clean ./tmp/ dir of segment* and stream.m3u8 files
-./src/scripts/clean_up.sh
+./scripts/clean_up.sh
 
 # continuously upload .ts and .m3u8 files to the server
-./src/scripts/upload_stream_files.sh
+./scripts/upload_stream_files.sh
 
 # stream
-./src/scripts/record_camera_and_sound.sh
+./scripts/record_camera_and_sound.sh
 ```
 
 ## TODO
