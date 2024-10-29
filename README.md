@@ -60,4 +60,4 @@ cd ~/show-stream
     - ~~Detect video devices~~
     - ~~Detect microphone~~
 - ~~Control port with a config file~~
-- Control recordings dir with a config file
+- ~~Control recordings dir with a config file~~

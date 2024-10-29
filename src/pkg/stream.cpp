@@ -1,3 +1,4 @@
+#include "config.h"
 #include "login.h"
 
 #include "crow.h"
@@ -25,7 +26,7 @@ void serve_stream_files(const crow::request& req, crow::response& res, SessionMi
         return;
     }
 
-    std::string file_path = "./tmp/recordings/"+path;
+    std::string file_path = static_cast<std::string>(config.at("recordings_dir")) + "/" + path;
     std::ifstream in(file_path, std::ios::binary);
 
     if (!in) {
