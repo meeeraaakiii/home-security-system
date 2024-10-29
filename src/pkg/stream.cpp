@@ -25,7 +25,7 @@ void serve_stream_files(const crow::request& req, crow::response& res, SessionMi
         return;
     }
 
-    std::string file_path = "./tmp/"+path;
+    std::string file_path = "./tmp/recordings/"+path;
     std::ifstream in(file_path, std::ios::binary);
 
     if (!in) {
