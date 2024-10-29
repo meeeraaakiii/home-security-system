@@ -58,4 +58,4 @@ cd ~/show-stream
 - ~~Way to quickly set up show-stream http app on the remote server~~
 - Make sure that ffmpeg command works with any hardware
     - ~~Detect video devices~~
-    - Detect microphone
+    - ~~Detect microphone~~
