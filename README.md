@@ -55,4 +55,4 @@ cd ~/show-stream
 - ~~Rate limiting~~
 - ~~Move crow headers into the project~~
 - ~~Set up scripts to generate and move stream files~~
-- Way to quickly set up show-stream http app on the remote server.
+- ~~Way to quickly set up show-stream http app on the remote server~~
