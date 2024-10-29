@@ -50,6 +50,7 @@ input[type="text"], input[type="password"] {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     outline: none;
     transition: background 0.3s ease, transform 0.3s ease;
+    margin-top: 5px;
 }
 
 /* Slightly bigger on hover */
