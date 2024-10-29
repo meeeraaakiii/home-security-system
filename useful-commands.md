@@ -43,7 +43,7 @@ ffmpeg \
 -vf "drawtext=fontfile=/path/to/font.ttf:text='%{localtime\:%X}':x=10:y=10:fontsize=24:fontcolor=white:box=1:boxcolor=black@0.5" \
 -c:v libx264 -preset ultrafast -c:a aac -b:a 128k \
 -f hls \
--hls_list_size 9999 \
+-hls_list_size 3 \
 -hls_flags delete_segments+program_date_time \
 -hls_allow_cache 0 \
 -hls_segment_filename "./tmp/segment_%04d.ts" \
@@ -59,9 +59,9 @@ ffmpeg \
 -vf "drawtext=fontfile=/path/to/font.ttf:text='%{localtime\:%X}':x=10:y=10:fontsize=24:fontcolor=white:box=1:boxcolor=black@0.5" \
 -c:v libx264 -preset ultrafast -c:a aac -b:a 128k \
 -f hls \
--hls_list_size 9999 \
+-hls_list_size 1 \
 -hls_flags delete_segments+program_date_time \
 -hls_allow_cache 0 \
 -hls_segment_filename "./tmp/segment_%04d.ts" \
-- | ssh vagrant@127.0.0.1 -p 2222 'cat > /home/vagrant/recordings/stream.m3u8'
+- | ssh vagrant@127.0.0.1 -p 2222 'cat >> ~/recordings/stream.m3u8'
 ```
