@@ -20,10 +20,17 @@ sudo apt install inotify-tools
 ```bash
 # run show-stream http app
 cmake -B build -S . && cmake --build build && ./build/ShowStream
+
 # remove ~/recordings dir on the server
 ./src/scripts/clean_up.sh server
 # clean ./tmp/ dir of segment* and stream.m3u8 files
 ./src/scripts/clean_up.sh
+
+# continuously upload .ts and .m3u8 files to the server
+./src/scripts/upload_stream_files.sh
+
+# stream
+./src/scripts/record_camera_and_sound.sh
 ```
 
 ## TODO
@@ -31,5 +38,5 @@ cmake -B build -S . && cmake --build build && ./build/ShowStream
 - ~~Real sessions (use map to store sessions)~~
 - ~~Rate limiting~~
 - ~~Move crow headers into the project~~
-- Set up scripts to generate and move stream files
+- ~~Set up scripts to generate and move stream files~~
 - Way to quickly set up show-stream http app on the remote server.
