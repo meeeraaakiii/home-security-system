@@ -1,6 +1,7 @@
 {
     "cookie_max_age": 2,
     "session_cleanup_interval": 10,
+    "port": 18288,
     "users": [
         {
             "username": "your_username_1",

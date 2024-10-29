@@ -59,3 +59,4 @@ cd ~/show-stream
 - ~~Make sure that ffmpeg command works with any hardware~~
     - ~~Detect video devices~~
     - ~~Detect microphone~~
+- ~~Control port with a config file~~

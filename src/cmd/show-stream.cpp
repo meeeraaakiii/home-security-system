@@ -44,5 +44,5 @@ int main() {
         serve_stream_files(req, res, ctx, path);
     });
 
-    app.port(8080).multithreaded().run();
+    app.port(config.at("port")).multithreaded().run();
 }
