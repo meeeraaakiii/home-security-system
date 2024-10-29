@@ -1,5 +1,11 @@
 #!/bin/bash
 
+set -e
+
+source ./env/.env.sh
+
+mkdir -p $LOCAL_RECORDINGS_DIR
+
 ffmpeg \
 -f v4l2 \
 -framerate 10 \
@@ -12,5 +18,5 @@ ffmpeg \
 -hls_list_size 9999 \
 -hls_flags delete_segments+program_date_time \
 -hls_allow_cache 0 \
--hls_segment_filename "./tmp/segment_%04d.ts" \
-'./tmp/stream.m3u8'
+-hls_segment_filename "$LOCAL_RECORDINGS_DIR/segment_%04d.ts" \
+"$LOCAL_RECORDINGS_DIR/stream.m3u8"
