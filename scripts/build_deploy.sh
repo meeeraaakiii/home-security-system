@@ -26,17 +26,17 @@ cp -r ./src/assets/html/*.html $DEPLOY_DIR/src/assets/html/
 cp -r ./src/assets/static/css/*.css $DEPLOY_DIR/src/assets/static/css/
 
 # Copy run app script
-# cp -r ./scripts/show-stream.sh $DEPLOY_DIR/scripts/
+# cp -r ./scripts/.hss.sh $DEPLOY_DIR/scripts/
 
 # Confirm structure
 echo "Deployment directory structure created:"
 find $DEPLOY_DIR
 
 # remove dir
-ssh -p $SSH_PORT $SSH_USER@$SSH_HOST "rm -rf ~/show-stream"
+ssh -p $SSH_PORT $SSH_USER@$SSH_HOST "rm -rf ~/.hss"
 # Upload to server
 echo "Uploading to the server..."
-scp -P $SSH_PORT -r $DEPLOY_DIR ${SSH_USER}@${SSH_HOST}:~/show-stream
+scp -P $SSH_PORT -r $DEPLOY_DIR ${SSH_USER}@${SSH_HOST}:~/.hss
 
 # Cleanup local deployment directory
 echo "Cleaning up local deployment directory..."

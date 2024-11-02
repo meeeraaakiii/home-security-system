@@ -45,7 +45,7 @@ cmake -B build -S . && cmake --build build
 ./scripts/build_deploy.sh
 
 # run following commands on the server
-cd ~/show-stream
+cd ~/.hss
 ./ShowStream
 ```
 

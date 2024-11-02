@@ -6,5 +6,5 @@ export SSH_HOST="127.0.0.1"
 export SSH_PORT="2222"
 
 # dirs
-export REMOTE_RECORDINGS_DIR="~/show-stream/tmp/recordings"
+export REMOTE_RECORDINGS_DIR="~/.hss/tmp/recordings"
 export LOCAL_RECORDINGS_DIR="./tmp/recordings"
