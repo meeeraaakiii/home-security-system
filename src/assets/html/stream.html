@@ -5,13 +5,13 @@
         <title>Camera</title>
         <link rel="stylesheet" href="/static/css/general.css">
         <link rel="stylesheet" href="/static/css/stream.css">
+        <script src="https://cdn.jsdelivr.net/npm/hls.js@1"></script>
     </head>
     <body>
         <div id="overlay" onclick="playVideo()">Click to play</div>
         <video id="video" controls></video>
     </body>
 
-    <script src="https://cdn.jsdelivr.net/npm/hls.js@1"></script>
     <script>
         function playVideo() {
             var video = document.getElementById('video');
@@ -23,11 +23,17 @@
 
         if (Hls.isSupported()) {
             var video = document.getElementById('video');
-            var hls = new Hls();
+            var hls = new Hls({
+                liveSyncDuration: 5, // Set live sync duration to keep close to the live edge
+                startPosition: -1    // Automatically starts at the last segment
+            });
             hls.loadSource('/stream.m3u8');
             hls.attachMedia(video);
         } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
             video.src = '/stream.m3u8';
+            video.addEventListener('loadedmetadata', function() {
+                video.currentTime = video.duration; // Set playback to the last segment on iOS Safari
+            });
         }
     </script>
 </html>
