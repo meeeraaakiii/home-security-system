@@ -1,7 +1,6 @@
 #!/bin/bash
 
-# Load environment variables
-source env/.env.sh
+source ./scripts/requirements.sh
 
 # Deployment directory
 DEPLOY_DIR="./build/deploy"

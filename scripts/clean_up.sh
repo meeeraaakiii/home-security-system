@@ -1,12 +1,11 @@
 #!/bin/bash
 
-source ./env/.env.sh
+source ./scripts/requirements.sh
 
 WHAT_TO_CLEAN="local"
 if [[ $1 == "server" ]]; then
     WHAT_TO_CLEAN="server"
 fi
-
 
 if [[ $WHAT_TO_CLEAN == "server" ]]; then
     echo "Cleaning up remote dir: $REMOTE_RECORDINGS_DIR"

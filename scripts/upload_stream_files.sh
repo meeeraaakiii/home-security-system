@@ -3,7 +3,7 @@
 # quit on any error
 set -e
 
-source ./env/.env.sh
+source ./scripts/requirements.sh
 
 # Create the remote directory if it doesn't exist
 ssh -p $SSH_PORT $SSH_USER@$SSH_HOST "mkdir -p $REMOTE_RECORDINGS_DIR"

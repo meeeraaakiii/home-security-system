@@ -2,7 +2,7 @@
 
 set -e
 
-source ./env/.env.sh
+source ./scripts/requirements.sh
 
 # List all video devices
 video_devices=($(ls /dev/video*))
