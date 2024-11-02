@@ -40,6 +40,8 @@ void serve_stream_files(const crow::request& req, crow::response& res, SessionMi
         res.set_header("Content-Type", "application/vnd.apple.mpegurl");
     } else if (path.find(".ts") != std::string::npos) {
         res.set_header("Content-Type", "video/MP2T");
+    } else if (path.find(".mp4") != std::string::npos) {
+        res.set_header("Content-Type", "video/mp4");
     }
 
     // Read the file contents into the response directly
