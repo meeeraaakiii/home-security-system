@@ -61,4 +61,4 @@ cd ~/show-stream
     - ~~Detect microphone~~
 - ~~Control port with a config file~~
 - ~~Control recordings dir with a config file~~
-- Investigate why Android's Chrome browser can't play HLS playlist.
+- ~~Investigate why Android's Chrome browser can't play HLS playlist~~
