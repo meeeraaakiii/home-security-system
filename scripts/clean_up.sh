@@ -14,9 +14,11 @@ if [[ $WHAT_TO_CLEAN == "server" ]]; then
 else
     echo "Cleaning up local dir: $LOCAL_RECORDINGS_DIR"
     # Attempt to delete the files
-    rm $LOCAL_RECORDINGS_DIR/segment* 2>/dev/null
+    rm $LOCAL_RECORDINGS_DIR/*.ts 2>/dev/null
+    result1=$?
+    rm $LOCAL_RECORDINGS_DIR/*.mp4 2>/dev/null
     # Check if the rm command was successful
-    if [[ $? -eq 0 ]]; then
+    if [[ $? -eq 0 || $result1 -eq 0  ]]; then
         echo "Deleted segments"
     else
         echo "No segments to delete"

@@ -41,13 +41,18 @@ ffmpeg \
 -i /dev/video0 \
 -f pulse -i alsa_input.pci-0000_00_1f.3.analog-stereo \
 -vf "drawtext=fontfile=/path/to/font.ttf:text='%{localtime\:%X}':x=10:y=10:fontsize=24:fontcolor=white:box=1:boxcolor=black@0.5" \
--c:v libx264 -preset ultrafast -c:a aac -b:a 128k \
+-c:v libx264 \
+-preset ultrafast \
+-c:a aac \
+-b:a 128k \
 -f hls \
+-hls_time 1 \
 -hls_list_size 9999 \
--hls_flags delete_segments+program_date_time \
+-hls_flags delete_segments+program_date_time+independent_segments \
 -hls_allow_cache 0 \
--hls_segment_filename "./tmp/segment_%04d.ts" \
-'./tmp/stream.m3u8'
+-hls_segment_type mpegts \
+-hls_segment_filename "./tmp/recordings/segment_%04d.ts" \
+'./tmp/recordings/stream.m3u8'
 
 # low latency .mp4
 ffmpeg \
