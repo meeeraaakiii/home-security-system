@@ -62,3 +62,14 @@ cd ~/.hss
 - ~~Control port with a config file~~
 - ~~Control recordings dir with a config file~~
 - ~~Investigate why Android's Chrome browser can't play HLS playlist~~
+
+
+## ffmpeg
+```bash
+# ffmpeg
+sudo apt-get install libavcodec-dev libavformat-dev libavfilter-dev libavdevice-dev libavutil-dev libswscale-dev libswresample-dev
+
+# alsa sound
+sudo apt-get update
+sudo apt-get install libasound2-dev
+```
