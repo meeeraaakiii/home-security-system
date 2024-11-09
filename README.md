@@ -62,6 +62,16 @@ cd ~/.hss
 - ~~Control port with a config file~~
 - ~~Control recordings dir with a config file~~
 - ~~Investigate why Android's Chrome browser can't play HLS playlist~~
+- Security
+    - ~~Generate session IDs on the server~~
+    - ~~Rate limiter~~
+    - ~~Add the Secure flag to cookies, ensuring they are only sent over HTTPS connections.~~
+    - Sanitize user inputs to prevent script injections, particularly if they are used within templates.
+    - Cookies are manually parsed in get_cookie_value, which may introduce parsing errors or missing security attributes.
+    - Use a cryptographically secure random number generator for session IDs
+    - Store hashed and salted passwords using a strong hashing algorithm (e.g., bcrypt, Argon2) and compare hashed values during authentication
+    - Implement CSRF tokens to ensure that the login request is genuine and originated from the intended user.
+
 
 
 ## ffmpeg
