@@ -17,14 +17,14 @@ message(STATUS "C++ Compiler: ${CMAKE_CXX_COMPILER}")
 include_directories(${CMAKE_SOURCE_DIR}/src/include)
 
 # Use GLOB_RECURSE to find all .cpp files, including module files src/.../*.cpp
-file(GLOB_RECURSE SOURCES "src/cmd/*.cpp" "src/pkg/*.cpp")
+file(GLOB_RECURSE SOURCES "src/pkg/*.cpp")
 
 # message("SOURCES BEFORE: ${SOURCES}")
 # # Exclude the main file from the matrix mult SOURCES list
-# set(MAIN_FILE "src/main.cpp")
-# list(FILTER SOURCES EXCLUDE REGEX ${MAIN_FILE})
+set(WEBSITE "src/cmd/show-stream.cpp")
+# list(FILTER SOURCES EXCLUDE REGEX ${WEBSITE})
 message("SOURCES: ${SOURCES}")
 
-add_executable(ShowStream ${SOURCES} ${MAIN_FILE})
+add_executable(ShowStream ${SOURCES} ${WEBSITE})
 # Include directories for headers
 target_include_directories(ShowStream PRIVATE include)
