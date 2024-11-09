@@ -178,6 +178,10 @@ void login_page_handler(const crow::request& req, crow::response& res) {
     auto submitted_username = params.find("username") != params.end() ? params["username"] : "";
     auto submitted_password = params.find("password") != params.end() ? params["password"] : "";
     std::string session_id = generate_pseudo_uuid();
+    std::string secure = "";
+    if (config.at("use_https")) {
+        secure = "; Secure";
+    }
 
     for (const auto& user : config.at("users")) {
         std::string username = user.at("username");
@@ -191,7 +195,8 @@ void login_page_handler(const crow::request& req, crow::response& res) {
                 "session_id=" + session_id + "; "+
                 "HttpOnly; "+
                 "Path=/; "+
-                "Expires=" + get_expiration_time(config.at("cookie_max_age"))
+                "Expires=" + get_expiration_time(config.at("cookie_max_age")) +
+                secure
             );
             // set status code to 303 to tells the client to redirect with a GET request.
             res.code = 303;

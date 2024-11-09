@@ -3,6 +3,7 @@
     "session_cleanup_interval": 10,
     "port": 18288,
     "recordings_dir": "./tmp/recordings",
+    "use_https": false,
     "users": [
         {
             "username": "your_username_1",
