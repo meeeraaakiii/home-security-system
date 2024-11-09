@@ -18,6 +18,7 @@ std::string read_file(const std::string& path) {
 
 void serve_css_file(const crow::request& req, crow::response& res, const std::string& file_path) {
     std::string full_path = "src/assets/static/css/" + file_path;
+    std::cout << "Full path: " << full_path << std::endl;
 
     std::string content = read_file(full_path);
     if (content.empty()) {

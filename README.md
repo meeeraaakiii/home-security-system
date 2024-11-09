@@ -71,7 +71,9 @@ cd ~/.hss
         - Store hashed and salted passwords using a strong hashing algorithm (e.g., bcrypt, Argon2) and compare hashed values during authentication
         - Implement CSRF tokens to ensure that the login request is genuine and originated from the intended user.
         - Ensure that cookie parsing is robust and watch out for header injection
-    - File serving routes like / and /static/css
+    - ~~File serving routes like / and /static/css~~
+        - ~~Path traversal (no need Crow comes with path normalization out of the box it seems)~~
+            - ~~Crow normalizes paths and confines access within the specified directory structure. This means that attempts to use path traversal (../) in URLs are typically resolved relative to the designated root directory, preventing access to files outside of it.~~
 
 ## ffmpeg
 ```bash
