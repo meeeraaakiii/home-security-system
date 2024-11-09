@@ -63,15 +63,15 @@ cd ~/.hss
 - ~~Control recordings dir with a config file~~
 - ~~Investigate why Android's Chrome browser can't play HLS playlist~~
 - Security
-    - ~~Generate session IDs on the server~~
-    - ~~Rate limiter~~
-    - ~~Add the Secure flag to cookies, ensuring they are only sent over HTTPS connections.~~
-    - Use a cryptographically secure random number generator for session IDs
-    - Store hashed and salted passwords using a strong hashing algorithm (e.g., bcrypt, Argon2) and compare hashed values during authentication
-    - Implement CSRF tokens to ensure that the login request is genuine and originated from the intended user.
-    - Ensure that cookie parsing is robust
-
-
+    - Login
+        - ~~Generate session IDs on the server~~
+        - ~~Rate limiter~~
+        - ~~Add the Secure flag to cookies, ensuring they are only sent over HTTPS connections.~~
+        - Use a cryptographically secure random number generator for session IDs
+        - Store hashed and salted passwords using a strong hashing algorithm (e.g., bcrypt, Argon2) and compare hashed values during authentication
+        - Implement CSRF tokens to ensure that the login request is genuine and originated from the intended user.
+        - Ensure that cookie parsing is robust
+    - File serving routes like / and /static/css
 
 ## ffmpeg
 ```bash
