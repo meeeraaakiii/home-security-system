@@ -3,6 +3,8 @@
 
 #include "crow.h"
 
+#include <openssl/evp.h>
+
 // Global variables for session management
 std::unordered_map<std::string, Session> sessions;
 std::shared_mutex session_mutex;  // for thread-safe access to sessions
@@ -164,6 +166,44 @@ std::string generate_pseudo_uuid() {
     return ss.str();
 }
 
+std::string hash_password(const std::string& password) {
+    // Create a context for the hashing operation
+    EVP_MD_CTX* context = EVP_MD_CTX_new();
+    if (context == nullptr) {
+        throw std::runtime_error("Failed to create context");
+    }
+
+    // Initialize the context with SHA-256
+    if (EVP_DigestInit_ex(context, EVP_sha256(), nullptr) != 1) {
+        EVP_MD_CTX_free(context);
+        throw std::runtime_error("Failed to initialize digest");
+    }
+
+    // Update the hash with the password data
+    if (EVP_DigestUpdate(context, password.c_str(), password.size()) != 1) {
+        EVP_MD_CTX_free(context);
+        throw std::runtime_error("Failed to update digest");
+    }
+
+    // Finalize and get the hash result
+    unsigned char hash[EVP_MAX_MD_SIZE];
+    unsigned int hashLength = 0;
+    if (EVP_DigestFinal_ex(context, hash, &hashLength) != 1) {
+        EVP_MD_CTX_free(context);
+        throw std::runtime_error("Failed to finalize digest");
+    }
+
+    // Free the context after use
+    EVP_MD_CTX_free(context);
+
+    // Convert hash to hex string
+    std::stringstream ss;
+    for (unsigned int i = 0; i < hashLength; ++i) {
+        ss << std::hex << std::setw(2) << std::setfill('0') << (int)hash[i];
+    }
+    return ss.str();
+}
+
 void serve_login_page(const crow::request& req, crow::response& res, crow::mustache::context ctx) {
     // Load and render the template
     auto rendered_template = crow::mustache::load("login.html").render(ctx);
@@ -184,8 +224,8 @@ void login_page_handler(const crow::request& req, crow::response& res) {
 
     for (const auto& user : config.at("users")) {
         std::string username = user.at("username");
-        std::string password = user.at("password");
-        if (submitted_username == username && submitted_password == password) {
+        std::string password_hash = user.at("password_hash");
+        if (submitted_username == username && hash_password(submitted_password) == password_hash) {
             std::cout << "Username and password correct!" << std::endl;
             std::string expiration_time = get_expiration_time(config.at("cookie_max_age"));
             add_session(session_id, username, config.at("cookie_max_age"));

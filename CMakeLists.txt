@@ -23,7 +23,7 @@ set(RECORD_AUDIO "src/cmd/record-audio.cpp")
 
 # add cmd entrypoints
 add_executable(ShowStream ${SOURCES} ${WEBSITE})
-add_executable(RecordAudio ${SOURCES} ${RECORD_AUDIO})
+add_executable(RecordAudio ${RECORD_AUDIO})
 
 # Include directories for headers
 target_include_directories(ShowStream PRIVATE include)
@@ -34,3 +34,9 @@ find_package(ALSA REQUIRED)
 
 # Link ALSA library to RecordAudio target
 target_link_libraries(RecordAudio PRIVATE ${ALSA_LIBRARIES})
+
+# Find the OpenSSL package
+find_package(OpenSSL REQUIRED)
+
+# Link OpenSSL to your executable
+target_link_libraries(ShowStream PRIVATE OpenSSL::SSL OpenSSL::Crypto)

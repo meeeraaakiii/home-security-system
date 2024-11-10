@@ -7,11 +7,11 @@
     "users": [
         {
             "username": "your_username_1",
-            "password": "your_password_1"
+            "password_hash": "d32ad5badb0e35105d6616e6dfbc1f2d85d4c66c8fecf90c0058c6140340fc11"
         },
         {
             "username": "your_username_2",
-            "password": "your_password_2"
+            "password_hash": "7423a2f42de0c5d0bdf0f667d608cc8ee8561cf7fce8755c6322ddd465871b0a"
         }
     ]
 }
