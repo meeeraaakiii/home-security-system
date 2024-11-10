@@ -67,7 +67,7 @@ cd ~/.hss
         - ~~Generate session IDs on the server~~
         - ~~Rate limiter~~
         - ~~Add the Secure flag to cookies, ensuring they are only sent over HTTPS connections.~~
-        - Use a cryptographically secure random number generator for session IDs
+        - ~~Use a cryptographically secure random number generator for session IDs~~
         - Store hashed and salted passwords using a strong hashing algorithm (e.g., bcrypt, Argon2) and compare hashed values during authentication
         - ~~Ensure that cookie parsing is robust and watch out for header injection~~
             - ~~Injection can't happen as we supply session id ourselves.~~

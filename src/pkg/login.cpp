@@ -150,17 +150,16 @@ std::unordered_map<std::string, std::string> parse_urlencoded_body(const std::st
 }
 
 std::string generate_pseudo_uuid() {
-    std::random_device rd;
-    std::mt19937 gen(rd());
-    std::uniform_int_distribution<uint32_t> dist(0, 0xFFFFFFFF);
-
+    std::random_device rd;  // Cryptographic random source
     std::stringstream ss;
     ss << std::hex << std::setfill('0');
-    ss << std::setw(8) << dist(gen) << "-";
-    ss << std::setw(4) << (dist(gen) & 0xFFFF) << "-";
-    ss << std::setw(4) << ((dist(gen) & 0x0FFF) | 0x4000) << "-";
-    ss << std::setw(4) << ((dist(gen) & 0x3FFF) | 0x8000) << "-";
-    ss << std::setw(12) << dist(gen);
+
+    // Generate each part of the UUID with random_device directly
+    ss << std::setw(8) << rd() << "-";
+    ss << std::setw(4) << (rd() & 0xFFFF) << "-";
+    ss << std::setw(4) << ((rd() & 0x0FFF) | 0x4000) << "-";  // Set the version to 4
+    ss << std::setw(4) << ((rd() & 0x3FFF) | 0x8000) << "-";  // Set the variant to 8, 9, A, or B
+    ss << std::setw(12) << (static_cast<uint64_t>(rd()) << 32 | rd());  // 12 hex chars from two rd() calls
 
     return ss.str();
 }
