@@ -19,10 +19,12 @@ include_directories(${CMAKE_SOURCE_DIR}/src/include)
 file(GLOB_RECURSE SOURCES "src/pkg/*.cpp")
 
 set(WEBSITE "src/cmd/show-stream.cpp")
+set(HASH_PASSWORD "src/cmd/hash-password.cpp")
 set(RECORD_AUDIO "src/cmd/record-audio.cpp")
 
 # add cmd entrypoints
 add_executable(ShowStream ${SOURCES} ${WEBSITE})
+add_executable(HashPassword ${SOURCES} ${HASH_PASSWORD})
 add_executable(RecordAudio ${RECORD_AUDIO})
 
 # Include directories for headers
@@ -40,3 +42,4 @@ find_package(OpenSSL REQUIRED)
 
 # Link OpenSSL to your executable
 target_link_libraries(ShowStream PRIVATE OpenSSL::SSL OpenSSL::Crypto)
+target_link_libraries(HashPassword PRIVATE OpenSSL::SSL OpenSSL::Crypto)

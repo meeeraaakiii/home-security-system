@@ -34,6 +34,8 @@ void serve_login_page(const crow::request& req, crow::response& res, crow::musta
 
 void login_page_handler(const crow::request& req, crow::response& res);
 
+std::string hash_password(const std::string& password);
+
 struct SessionMiddleware {
     struct context {
         std::string session_id;
